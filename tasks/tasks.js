@@ -1,6 +1,6 @@
 const getContract = async (
   name = "Donations",
-  addr = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+  addr = "0x178AA62CdaA6532c989a8ac1b41f1bB46Eeecd12"
 ) => {
   const Token = await ethers.getContractFactory(name);
   return await Token.attach(addr, ethers.provider);
