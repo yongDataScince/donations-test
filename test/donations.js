@@ -45,11 +45,27 @@ describe("Donations", () => {
       .connect(addr2)
       .donate({ value: ethers.utils.parseEther("9") });
 
-    expect(await donations.connect(owner).withdraw(addr5.address));
+    expect(
+      await donations
+        .connect(owner)
+        .withdraw(addr5.address, ethers.utils.parseEther("10"))
+    );
     expect(await ethers.provider.getBalance(donations.address)).to.equal("0");
 
+    await donations
+      .connect(addr2)
+      .donate({ value: ethers.utils.parseEther("12") });
+
     await expect(
-      donations.connect(addr1).withdraw(addr5.address)
+      donations
+        .connect(owner)
+        .withdraw(addr5.address, ethers.utils.parseEther("20"))
+    ).to.be.revertedWith("Not enough tokens");
+
+    await expect(
+      donations
+        .connect(addr1)
+        .withdraw(addr5.address, ethers.utils.parseEther("12"))
     ).to.be.revertedWith("Ownable: caller is not the owner");
   });
 

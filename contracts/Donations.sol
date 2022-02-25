@@ -24,8 +24,9 @@ contract Donations is Ownable {
     emit Donate(msg.sender, msg.value);
   }
 
-  function withdraw(address payable _to) external onlyOwner {
-    _to.transfer(address(this).balance);
+  function withdraw(address payable _to, uint _value) external onlyOwner {
+    require(address(this).balance >= _value, "Not enough tokens");
+    _to.transfer(_value);
   }
 
   function getDonaters() external view returns(address[] memory) {
