@@ -5,7 +5,7 @@
 - `npx hardhat withdraw --address --"<address to>" --value "<value>"`
 - `npx hardhat value --address --"<address>"`
 - `npx hardhat donaters`
-- `npx hardhat value`
+- `npx hardhat value --address --"<address>"`
 
 ## Contract info
 - rinkeby address: `0x178AA62CdaA6532c989a8ac1b41f1bB46Eeecd12`
